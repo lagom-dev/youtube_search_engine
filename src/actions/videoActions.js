@@ -1,19 +1,20 @@
 import * as types from './actionTypes';
 const apiKey = 'AIzaSyA9fqjYUNrgEifwlJudzENDYYeicsFJMHg';
 const youtubeUrl = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=5&key='+apiKey+'&q=';
-function url(_keyWord, _newPage) {
+function url(_query, _nextPageToken) {
     /* AIzaSyA9fqjYUNrgEifwlJudzENDYYeicsFJMHg */
-  return youtubeUrl + _keyWord + '&page=' + _newPage;
+  let pageToken = _nextPageToken || '';
+  return youtubeUrl + _query + '&pageToken=' + pageToken;
 }
 
 export function receiveVideo(json) {
-    console.log(json.items);
-  return {type: types.RECEIVE_VIDEO, video: json.items, page:14};
+    console.log('nextPageToken', json.nextPageToken);
+  return {type: types.RECEIVE_VIDEO, video: json.items, nextPageToken: json.nextPageToken, };
 }
 
-export function fetchVideos(_keyWord, _newPage) {
+export function fetchVideos(_keyWord, _nextPageToken) {
   return dispatch => {
-    return fetch(url(_keyWord, _newPage), {
+    return fetch(url(_keyWord, _nextPageToken), {
       method: 'GET',
       mode: 'cors',
       credentials: 'include',

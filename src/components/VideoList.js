@@ -1,20 +1,12 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as videoActions from '../actions/videoActions';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 
-
-class VideoList extends React.Component {
-
-    componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
-        this.props.videoActions.fetchVideos();
-    }
-
-
+export default class VideoList extends React.Component {
+    
     renderData() {
+        console.log('nextprops', this.props.video);
+        
         return this.props.video.map(item => {
-
             return (
                 <div key={item.id.videoId}>
                     <h3>{item.snippet.title}</h3>
@@ -26,13 +18,16 @@ class VideoList extends React.Component {
 
 
     render() {
+        console.log('nextprops', this.props.video,  this.props);
         return (
             <div className="">
-                {this.props.video.length > 0 ?
+                {this.props.video && this.props.video.length > 0 ?
+                
                     this.renderData()
                     :
                     <div className="">
                         No Data
+                   
             </div>
                 }
             </div>
@@ -41,23 +36,6 @@ class VideoList extends React.Component {
 }
 
 VideoList.propTypes = {
-    videoActions: PropTypes.object,
-    videos: PropTypes.array
-};
+    video: PropTypes.array
+  };
 
-function mapStateToProps(state) {
-    return {
-        video: state.video
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        videoActions: bindActionCreators(videoActions, dispatch)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(VideoList);

@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import * as videoActions from '../actions/videoActions';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import VideoList from '../components/VideoList';
+import LoadMoreButton from '../components/LoadMoreButton';
 
 class SearchBox extends Component {
 
@@ -10,51 +12,52 @@ class SearchBox extends Component {
     super(props);
 
     this.state = {
-      inputValue: '',
+      queryValue: '',
     };
 
-    this.updateInputValue =  (evt) => {
+    this.updateInputValue = (evt) => {
+      let inputValue = evt.target.value; /*TODO: sanitize typed value */
       this.setState({
-        inputValue: evt.target.value,
+        queryValue: inputValue,
       });
-        setTimeout(() => {
-          this.props.videoActions.fetchVideos(this.state.inputValue);
-        }, 500);
+      setTimeout(() => {
+        console.log('this.props.video.nextPageToken', this.props);
+        this.props.videoActions.fetchVideos(this.state.queryValue, this.props.video.nextPageToken);
+      }, 500);
     }
 
     this.loadMore = () => {
-      console.log(this.props.page);
-      let newPage = this.props.page + 5;
-      this.props.videoActions.fetchVideos(this.state.inputValue, newPage);
+      console.log('this.props.video.nextPageToken', this.props);
+      this.props.videoActions.fetchVideos(this.state.queryValue, this.props.video.nextPageToken);
     }
   }
-
-
   render() {
     return (
       <div className="SearchBox">
         <input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
-        <input type="button" onClick={this.loadMore} value="Load more" />
+        <VideoList video={this.props.video.video} />
+        <LoadMoreButton loadMore={this.loadMore} />
       </div>
     );
   }
 }
 
-SearchBox.propTypes = {
+VideoList.propTypes = {
   videoActions: PropTypes.object,
-  page: PropTypes.number,
+  video: PropTypes.array,
+  nextPageToken: PropTypes.string,
 };
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return {
-    page : state.video.page
+    video: state.video,
+    nextPageToken: state.nextPageToken,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    videoActions: bindActionCreators(videoActions, dispatch)
+    videoActions: bindActionCreators(videoActions, dispatch),
   };
 }
 

@@ -4,7 +4,6 @@ import './App.css';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
-import Videolist from './components/VideoList';
 import SearchBox from './components/SearchBox';
 
 const store = configureStore();
@@ -23,9 +22,6 @@ class App extends Component {
         </p>
         <Provider store={store}>
           <SearchBox />
-        </Provider>
-        <Provider store={store}>
-          <Videolist />
         </Provider>
       </div>
     );

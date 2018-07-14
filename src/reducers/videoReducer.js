@@ -8,7 +8,7 @@ export default function video(state = initialState.video, action) {
       console.log('FETCH_VIDEO Action')
       return action;
     case RECEIVE_VIDEO:
-      newState = {video:action.video, page:action.page};
+      newState = {video:action.video, nextPageToken:action.nextPageToken};
       console.log('RECEIVE_VIDEO Action')
       return newState;
     default:
