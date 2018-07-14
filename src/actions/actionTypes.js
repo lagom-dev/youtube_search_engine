@@ -1,0 +1,2 @@
+export const FETCH_VIDEO = 'FETCH_VIDEO';
+export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
