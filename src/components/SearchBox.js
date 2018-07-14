@@ -17,10 +17,15 @@ class SearchBox extends Component {
       this.setState({
         inputValue: evt.target.value,
       });
-      let inputValue = this.state.inputValue;
         setTimeout(() => {
           this.props.videoActions.fetchVideos(this.state.inputValue);
         }, 500);
+    }
+
+    this.loadMore = () => {
+      console.log(this.props.page);
+      let newPage = this.props.page + 5;
+      this.props.videoActions.fetchVideos(this.state.inputValue, newPage);
     }
   }
 
@@ -29,6 +34,7 @@ class SearchBox extends Component {
     return (
       <div className="SearchBox">
         <input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
+        <input type="button" onClick={this.loadMore} value="Load more" />
       </div>
     );
   }
@@ -36,12 +42,13 @@ class SearchBox extends Component {
 
 SearchBox.propTypes = {
   videoActions: PropTypes.object,
-  videos: PropTypes.array
+  page: PropTypes.number,
 };
 
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
-    video: state.video
+    page : state.video.page
   };
 }
 
