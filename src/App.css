@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 165px;
   padding: 20px;
   color: white;
 }
@@ -25,4 +25,53 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.SearchBox {
+  padding: 7px;
+  border-radius: 7px;
+  border: 7px solid #333;
+}
+
+
+.result-list {
+  height: 50vh;
+  overflow: auto;
+  padding: 7px;
+  display: block;
+}
+
+
+.result-list-item {
+  height: 165px;
+  white-space: pre-wrap;
+  text-align: left;
+  list-style: none;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  margin: 0;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.result-list-item label {
+  margin: 0 2px 0;
+  display: inline;
+}
+
+.result-list-item-thumb {
+  max-width: 120px;
+  max-height: 90px;
+  border-radius: 12px;
+  margin: 20px 0 0 0;
+}
+
+.LoadMoreButton {
+  margin: auto;
+}
+
+.play-button {
+  padding: 0;
+  width: 119px;
+  
 }

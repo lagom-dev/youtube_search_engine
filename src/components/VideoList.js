@@ -1,37 +1,50 @@
 import React from 'react';
+import VideoListItem from '../components/VideoListItem';
 import PropTypes from 'prop-types';
 
 export default class VideoList extends React.Component {
 
-    renderData() {
-        // console.log('nextprops', this.props.video);
 
-        return this.props.videos.map(item => {
-            return (
-                <div key={item.id.videoId}>
-                    <h3>{item.snippet.title}</h3>
-                    <p>{item.snippet.description}</p>
-                </div>
-            );
-        });
+    scrollToBottom = () => {
+        this.listEnd.scrollIntoView({ behavior: 'smooth' });
     }
 
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
 
     render() {
         //console.log('nextprops', this.props.video,  this.props);
         return (
-            <div className="">
+            <ul className='result-list twelve columns'>
                 {this.props.videos && this.props.videos.length > 0 ?
 
-                    this.renderData()
+                    this.renderList()
                     :
-                    <div className="">
-                        No Data
+                    <div className='empty-result-list'>
+                        No Results were found for this search
 
         </div>
                 }
-            </div>
+                <div style={{ float: "left", clear: "both" }}
+                    ref={(el) => { this.listEnd = el; }}>
+                </div>
+            </ul>
         );
+    }
+
+    renderList() {
+        // console.log('nextprops', this.props.video);
+
+        return this.props.videos.map(item => {
+            return (
+                <VideoListItem key={item.id.videoId} item={item} />
+            );
+        });
     }
 }
 

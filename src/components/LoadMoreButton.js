@@ -4,7 +4,7 @@ export default class LoadMoreButton extends React.Component {
 
     render() {
         return (
-            <input type="button" onClick={this.props.loadMore} value="Load more" />
+            <input className={`LoadMoreButton ${this.props.display}`} type='button' onClick={this.props.loadMore} value='Load more' style={{display:`${ this.props.display}`}} />
         );
     }
 }

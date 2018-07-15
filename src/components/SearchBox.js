@@ -30,7 +30,7 @@ class SearchBox extends Component {
       });
       setTimeout(() => {
         this.load();
-      }, 500);
+      }, 1000);
     }
 
 
@@ -43,11 +43,13 @@ class SearchBox extends Component {
   }
 
   render() {
+    let videos = this.props.video.video || [];
     return (
-      <div className="SearchBox">
-        <input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
-        <VideoList videos={this.props.video.video} isPagination={this.state.isPagination} />
-        <LoadMoreButton loadMore={this.loadMore} />
+      <div className="SearchBox six columns">
+        <span>Youtube Search:</span><input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
+        <label>Showing {videos.length} Videos</label>
+        <VideoList videos={videos} isPagination={this.state.isPagination} />
+        <LoadMoreButton loadMore={this.loadMore} display={videos.length > 0 ? 'block' : 'none'} />
       </div>
     );
   }
