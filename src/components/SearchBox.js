@@ -10,32 +10,43 @@ class SearchBox extends Component {
 
   constructor(props) {
     super(props);
-
+  
     this.state = {
       queryValue: '',
+      isPagination: false,
     };
+
+   
+    this.load = (_isPag) => {
+      this.props.videoActions.fetchVideos(this.state.queryValue, this.props.video.nextPageToken,_isPag);
+    }
+
 
     this.updateInputValue = (evt) => {
       let inputValue = evt.target.value; /*TODO: sanitize typed value */
       this.setState({
         queryValue: inputValue,
+        isPagination: false,
       });
       setTimeout(() => {
-        console.log('this.props.video.nextPageToken', this.props);
-        this.props.videoActions.fetchVideos(this.state.queryValue, this.props.video.nextPageToken);
+        this.load();
       }, 500);
     }
 
+
     this.loadMore = () => {
-      console.log('this.props.video.nextPageToken', this.props);
-      this.props.videoActions.fetchVideos(this.state.queryValue, this.props.video.nextPageToken);
+      this.setState({
+        isPagination: true,
+      });
+      this.load(true);
     }
   }
+
   render() {
     return (
       <div className="SearchBox">
         <input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
-        <VideoList video={this.props.video.video} />
+        <VideoList videos={this.props.video.video} isPagination={this.state.isPagination} />
         <LoadMoreButton loadMore={this.loadMore} />
       </div>
     );

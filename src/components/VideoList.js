@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class VideoList extends React.Component {
-    
+
     renderData() {
-        console.log('nextprops', this.props.video);
-        
-        return this.props.video.map(item => {
+        // console.log('nextprops', this.props.video);
+
+        return this.props.videos.map(item => {
             return (
                 <div key={item.id.videoId}>
                     <h3>{item.snippet.title}</h3>
@@ -18,17 +18,17 @@ export default class VideoList extends React.Component {
 
 
     render() {
-        console.log('nextprops', this.props.video,  this.props);
+        //console.log('nextprops', this.props.video,  this.props);
         return (
             <div className="">
-                {this.props.video && this.props.video.length > 0 ?
-                
+                {this.props.videos && this.props.videos.length > 0 ?
+
                     this.renderData()
                     :
                     <div className="">
                         No Data
-                   
-            </div>
+
+        </div>
                 }
             </div>
         );
@@ -36,6 +36,6 @@ export default class VideoList extends React.Component {
 }
 
 VideoList.propTypes = {
-    video: PropTypes.array
-  };
+    videos: PropTypes.array
+};
 
