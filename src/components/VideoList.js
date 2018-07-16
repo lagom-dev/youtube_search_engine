@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 export default class VideoList extends React.Component {
 
 
-    scrollToBottom = () => {
-        this.listEnd.scrollIntoView({ behavior: 'smooth' });
+    scrollToBottom() {
+        if (this.listEnd && this.listEnd.scrollIntoView) {
+            this.listEnd.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 
     componentDidMount() {
@@ -35,7 +37,7 @@ export default class VideoList extends React.Component {
 
     renderList() {
         // console.log('nextprops', this.props.video);
-        if (this.props.videos.length) {
+        if (this.props.videos && this.props.videos.length) {
             return this.props.videos.map(item => {
                 return (
                     <VideoListItem key={item.id.videoId} item={item} playVideo={this.props.playVideo} />
@@ -43,7 +45,7 @@ export default class VideoList extends React.Component {
             });
         } else {
             return (
-              <div> No data </div>
+                <div> No data </div>
             );
         }
     }

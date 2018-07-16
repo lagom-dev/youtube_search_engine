@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+  padding: 10px;
+  background: url('../images/background-yt-1000X684.png');
+  border: 5px solid #333;
+}
+
+.result-list {
+  height: 40vh;
+  overflow: auto;
+  padding: 7px;
+  display: block;
+  margin: 0;
+}
+
+@media screen and (max-height: 480px) {
+  .result-list {
+    height: 30vh;
+  }
+}
+
+.result-list-item {
+  height: 165px;
+  white-space: pre-wrap;
+  text-align: left;
+  list-style: none;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  margin: 0;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.result-list-item label {
+  margin: 0 2px 0;
+  display: inline;
+}
+
+.result-list-item-thumb {
+  max-width: 120px;
+  max-height: 90px;
+  margin: 0 0 0 35%;
+}
+
+.play-button {
+  padding: 0 !important;
+  max-width: 120px;
+  display:block;
+  margin: 0 0 0 35%;
+}
+
+.main-container {
+  padding: 7px;
+  border: 7px solid #333;
+  height : 75vh;
+  background: #fff;
+}
+
+.main-container:eq(0) {
+  margin-left: 20px !important;
+}
+
+.video-player {
+  height: 100%;
+  width: 100%;
+}
