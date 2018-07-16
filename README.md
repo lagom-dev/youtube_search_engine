@@ -1,3 +1,15 @@
+Instruções para iniciar o projeto localmente: 
+* Navegar até a pasta do projeto;
+* Digitar npm install;
+* Aguardar instalação;
+* Digitar npm start;
+
+Instruções para executar testes no projeto localmente:
+* Navegar até a pasta do projeto;
+* Digitar npm test;
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
