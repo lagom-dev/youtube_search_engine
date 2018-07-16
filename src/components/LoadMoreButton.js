@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/LoadMoreButton.css';
 
 export default class LoadMoreButton extends React.Component {
 

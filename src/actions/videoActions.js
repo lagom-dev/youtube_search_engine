@@ -8,7 +8,7 @@ function url(_query, _nextPageToken) {
 }
 
 export function receiveVideo(_json, type) {
-  console.log('nextPageToken', _json);
+  //console.log('nextPageToken', _json);
   return { type, video: _json.items, nextPageToken: _json.nextPageToken, totalResults: _json.pageInfo.totalResults };
 }
 

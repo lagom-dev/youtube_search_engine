@@ -8,13 +8,13 @@ export default function video(state = initialState.video, action) {
       console.log('FETCH_VIDEO Action')
       return action;
     case RECEIVE_VIDEO:
-      console.log('***INItIAL state ', state);
+      //console.log('***INItIAL state ', state);
       newState = { video: action.video, nextPageToken: action.nextPageToken, totalResults: action.totalResults };
       console.log('RECEIVE_VIDEO Action')
       return newState;
 
     case RECEIVE_PAGINATED_VIDEO:
-      console.log('***INItIAL state ', state);
+      //console.log('***INItIAL state ', state);
       let prevVideos = state.video || [];
       newState = { video: prevVideos.concat(action.video), nextPageToken: action.nextPageToken, totalResults: action.totalResults };
       console.log('RECEIVE_PAGINATED_VIDEO Action')

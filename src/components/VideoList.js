@@ -35,12 +35,17 @@ export default class VideoList extends React.Component {
 
     renderList() {
         // console.log('nextprops', this.props.video);
-
-        return this.props.videos.map(item => {
+        if (this.props.videos.length) {
+            return this.props.videos.map(item => {
+                return (
+                    <VideoListItem key={item.id.videoId} item={item} playVideo={this.props.playVideo} />
+                );
+            });
+        } else {
             return (
-                <VideoListItem key={item.id.videoId} item={item} playVideo={this.props.playVideo} />
+              <div> No data </div>
             );
-        });
+        }
     }
 }
 
