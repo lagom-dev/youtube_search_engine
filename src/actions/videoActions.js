@@ -8,8 +8,8 @@ function url(_query, _nextPageToken) {
 }
 
 export function receiveVideo(_json, type) {
-  //console.log('nextPageToken', json.nextPageToken);
-  return { type, video: _json.items, nextPageToken: _json.nextPageToken, };
+  console.log('nextPageToken', _json);
+  return { type, video: _json.items, nextPageToken: _json.nextPageToken, totalResults: _json.pageInfo.totalResults };
 }
 
 export function fetchVideos(_keyWord, _nextPageToken, _isPagination) {

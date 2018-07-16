@@ -21,16 +21,12 @@ export default class VideoList extends React.Component {
         //console.log('nextprops', this.props.video,  this.props);
         return (
             <ul className='result-list twelve columns'>
-                {this.props.videos && this.props.videos.length > 0 ?
+                {
 
                     this.renderList()
-                    :
-                    <div className='empty-result-list'>
-                        No Results were found for this search
 
-        </div>
                 }
-                <div style={{ float: "left", clear: "both" }}
+                <div style={{ float: 'left', clear: 'both' }}
                     ref={(el) => { this.listEnd = el; }}>
                 </div>
             </ul>
@@ -42,7 +38,7 @@ export default class VideoList extends React.Component {
 
         return this.props.videos.map(item => {
             return (
-                <VideoListItem key={item.id.videoId} item={item} />
+                <VideoListItem key={item.id.videoId} item={item} playVideo={this.props.playVideo} />
             );
         });
     }

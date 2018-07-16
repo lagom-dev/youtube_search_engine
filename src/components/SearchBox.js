@@ -44,11 +44,13 @@ class SearchBox extends Component {
 
   render() {
     let videos = this.props.video.video || [];
+    console.log('SearchBox =>>>>' , this.props);
+    let totalResults = this.props.video.totalResults || 0;
     return (
-      <div className="SearchBox six columns">
+      <div className="SearchBox">
         <span>Youtube Search:</span><input type="text" placeholder="Start typing..." value={this.state.inputValue} onChange={this.updateInputValue} />
-        <label>Showing {videos.length} Videos</label>
-        <VideoList videos={videos} isPagination={this.state.isPagination} />
+        <label>Showing {videos.length} Videos from {totalResults}</label>
+        <VideoList videos={videos} isPagination={this.state.isPagination} playVideo={this.props.playVideo} />
         <LoadMoreButton loadMore={this.loadMore} display={videos.length > 0 ? 'block' : 'none'} />
       </div>
     );
@@ -59,6 +61,7 @@ VideoList.propTypes = {
   videoActions: PropTypes.object,
   video: PropTypes.array,
   nextPageToken: PropTypes.string,
+  totalResults: PropTypes.number,
 };
 
 function mapStateToProps(state) {
